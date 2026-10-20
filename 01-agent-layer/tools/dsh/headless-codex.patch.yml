@@ -1,0 +1,22 @@
+# Codex-only headless profile overlay.
+# - Reuse the credential store already configured by the desktop app.
+# - Approve tools non-interactively; the DSH sandbox remains workspace-write.
+- id: credentials
+  disabled: false
+- id: approval
+  config:
+    policy: never
+- id: permission
+  config:
+    defaultPreset: codex-workspace-write
+    presets:
+      codex-workspace-write:
+        sandbox: workspace-write
+        approval: never
+        name: codex-workspace-write
+        description: Codex-managed writes inside the selected workspace.
+      codex-read-only:
+        sandbox: read-only
+        approval: never
+        name: codex-read-only
+        description: Codex-managed read-only investigation.

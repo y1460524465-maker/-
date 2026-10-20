@@ -1,0 +1,29 @@
+{
+  "model": "gpt-6.1-sol",
+  "session_id": "01a1579a-87db-72d1-bd1a-62001f849482",
+  "scope": "shared orchestration session: setup + T1 + T2; cannot honestly split per-task model usage",
+  "as_of": "2026-10-20T05:01:36.115098+00:00",
+  "token_usage_as_of": "2026-10-20T05:00:25.319Z",
+  "actual_tokens": {
+    "input_tokens": 8579030,
+    "cached_input_tokens": 8392960,
+    "cache_write_input_tokens": 0,
+    "output_tokens": 23764,
+    "reasoning_output_tokens": 3971,
+    "total_tokens": 8602794
+  },
+  "input_chars_user_messages": 2096,
+  "output_chars_assistant_visible": 1180,
+  "elapsed_s": 1375.995098,
+  "read_files": {
+    "baseline_hash_reads": 9799,
+    "t1_implementation_and_tests_content": 2,
+    "t2_implementation_and_tests_content": 2,
+    "total_content_read_count": "not exactly observable; command-level calls batched policy/files/events reads, not instrumented"
+  },
+  "test_result": {
+    "t1": "minimal passed; initial shell quoting SyntaxError before import, then single effective script run",
+    "t2": "single minimal acceptance passed"
+  },
+  "character_scope": "visible user message content and assistant text only; excludes tools, reasoning and system/developer prompts"
+}

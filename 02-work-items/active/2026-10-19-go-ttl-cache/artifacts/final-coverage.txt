@@ -1,0 +1,1 @@
+ok  	example.com/ttlcache	0.126s	coverage: 100.0% of statements

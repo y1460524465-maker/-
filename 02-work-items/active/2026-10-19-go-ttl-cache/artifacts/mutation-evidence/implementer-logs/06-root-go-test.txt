@@ -1,0 +1,8 @@
+# root delivery test
+# cwd: 
+E:\多agent协作\work\active\2026-10-19-go-ttl-cache\workspaces\implementation
+# command: go test ./...
+# output:
+ok  	example.com/ttlcache	0.112s
+# exit code: 
+0

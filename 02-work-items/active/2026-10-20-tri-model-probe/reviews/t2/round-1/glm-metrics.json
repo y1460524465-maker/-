@@ -1,0 +1,20 @@
+{
+  "model": "GLM 5.3",
+  "task": "t2",
+  "round": 1,
+  "session_id": "ba4803c2-78db-4514-8cbd-c2cffd7b5721",
+  "input_chars": 11540,
+  "output_chars": 2588,
+  "final_output_chars": 2321,
+  "actual_tokens": {
+    "prompt_tokens": 275333,
+    "completion_tokens": 11976,
+    "total_tokens": 287309,
+    "prompt_cache_hit_tokens": 236992,
+    "prompt_cache_miss_tokens": 38341
+  },
+  "elapsed_s": 189.363,
+  "read_files": 2,
+  "character_scope": "explicit input package / all assistant output_text; hidden system input and tool output excluded",
+  "test_result": "see glm-result.md"
+}

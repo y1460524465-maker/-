@@ -1,0 +1,18 @@
+{
+  "item_id": "2026-10-20-tri-model-probe",
+  "label": "t1-implement",
+  "backend": "desktop-live",
+  "desktop_host_port": 53280,
+  "workspace_id": "acf2012e-3c4c-4cd6-9d77-aace19c4fa52",
+  "session_id": "session-f0307f1c-7635-4a0f-972e-9e55e998efad",
+  "cwd": "E:\\多agent协作\\02-work-items\\active\\2026-10-20-tri-model-probe\\workspaces\\t1",
+  "status": "completed",
+  "exit_code": 0,
+  "initial_seq": 3,
+  "completed_seq": 81,
+  "error": null,
+  "request_path": "E:\\多agent协作\\02-work-items\\active\\2026-10-20-tri-model-probe\\artifacts\\delegation\\20261020-124359-916730-t1-implement-request.md",
+  "events_path": "E:\\多agent协作\\02-work-items\\active\\2026-10-20-tri-model-probe\\artifacts\\delegation\\20261020-124359-916730-t1-implement-events.jsonl",
+  "result_path": "E:\\多agent协作\\02-work-items\\active\\2026-10-20-tri-model-probe\\artifacts\\delegation\\20261020-124359-916730-t1-implement-result.md",
+  "finished_at": "2026-10-20T12:44:51"
+}

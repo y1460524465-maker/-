@@ -1,0 +1,173 @@
+三模型流程探针 T1 / GLM round 1。你是 GLM 5.3 独立审查者，只使用以下四项输入，不读取记忆、仓库、journal、AGENTS 或任何其他材料。不要修改源文件、不要 Git。
+测试副本目录（仅含改动文件，文件已设只读）：C:\Users\user\AppData\Local\Temp\2026-10-20-tri-model-probe-t1-r1
+仅在此目录实际运行 brief 中 unittest（-B 禁止字节码写入），并做必要的独立边界验证及代码审查；不要读取 E:\多agent协作 原目录。结果只在最终答复中输出，禁止写文件。
+请报告 PASS/FAIL、实际命令与完整结果、每条有效问题的位置/复现/预期、读取的去重文件数、session-id 和实际 token（若可见，否则标明不可见）。区分需求缺陷与可选建议。不要扩展验收标准。报告自身执行耗时。
+
+## 1 当前 brief 验收标准
+# T1 brief / acceptance
+实现 tags.py 的 normalize_tag(value: str) -> str。
+按顺序：去首尾空白；转小写（str.lower）；连续 Unicode 空白合并为一个 ASCII 连字符；去结果首尾 ASCII 连字符。
+保留 Unicode 字母、数字及其余标点，不做 ASCII 过滤或 Unicode 归一化。
+空字符串、全空白抛 ValueError。非空但仅连字符可得到空串，不追加未要求的错误。
+test_tags.py 使用 unittest，覆盖大小写、连续空格、制表符、换行、首尾空白、空输入、Unicode、标点及连字符边界。
+验证命令：python -B -m unittest discover -s . -p test_tags.py -v
+只创建 tags.py 与 test_tags.py，使用 Python 标准库。
+
+## 2 diff
+```diff
+--- /dev/null
++++ tags.py
+@@ -0,0 +1,24 @@
++"""Tag normalization."""
++
++import re
++
++_WHITESPACE_RUN = re.compile(r"\s+")
++
++
++def normalize_tag(value: str) -> str:
++    """Normalize a tag to lowercase words joined by single ASCII hyphens.
++
++    Leading and trailing whitespace is removed, consecutive whitespace is
++    collapsed to one ``-``, and leading/trailing ``-`` are removed.  Other
++    characters, including Unicode letters and punctuation, are preserved.
++
++    Raises:
++        ValueError: if ``value`` is empty or contains only whitespace.
++    """
++    tag = value.strip()
++    if not tag:
++        raise ValueError("tag must not be empty or whitespace-only")
++
++    tag = tag.lower()
++    tag = _WHITESPACE_RUN.sub("-", tag)
++    return tag.strip("-")
+--- /dev/null
++++ test_tags.py
+@@ -0,0 +1,78 @@
++"""Tests for tags.normalize_tag."""
++
++import unittest
++
++from tags import normalize_tag
++
++
++class NormalizeTagTests(unittest.TestCase):
++    def test_lowercases_ascii(self):
++        self.assertEqual(normalize_tag("Hello World"), "hello-world")
++        self.assertEqual(normalize_tag("MiXeD CaSe"), "mixed-case")
++
++    def test_collapses_consecutive_spaces(self):
++        self.assertEqual(normalize_tag("a   b"), "a-b")
++        self.assertEqual(normalize_tag("a     b  c"), "a-b-c")
++
++    def test_tabs_collapse_to_single_hyphen(self):
++        self.assertEqual(normalize_tag("a\tb"), "a-b")
++        self.assertEqual(normalize_tag("a\t\tb"), "a-b")
++
++    def test_newlines_collapse_to_single_hyphen(self):
++        self.assertEqual(normalize_tag("a\nb"), "a-b")
++        self.assertEqual(normalize_tag("a\r\n\r\nb"), "a-b")
++
++    def test_mixed_whitespace_run_collapses_once(self):
++        self.assertEqual(normalize_tag("a \t\n\r b"), "a-b")
++
++    def test_strips_surrounding_whitespace(self):
++        self.assertEqual(normalize_tag("  hello  "), "hello")
++        self.assertEqual(normalize_tag("\t\nHello\r\n"), "hello")
++        self.assertEqual(normalize_tag("\u00a0Hello\u3000"), "hello")
++
++    def test_empty_input_raises(self):
++        with self.assertRaises(ValueError):
++            normalize_tag("")
++
++    def test_whitespace_only_input_raises(self):
++        for value in ("   ", "\t\n", " \r\n\t ", "\u00a0", "\u3000\u3000"):
++            with self.subTest(value=value):
++                with self.assertRaises(ValueError):
++                    normalize_tag(value)
++
++    def test_preserves_unicode_letters(self):
++        self.assertEqual(normalize_tag("Café  au Lait"), "café-au-lait")
++        self.assertEqual(normalize_tag("标签  测试"), "标签-测试")
++        self.assertEqual(normalize_tag("Москва 2024"), "москва-2024")
++
++    def test_does_not_normalize_unicode(self):
++        self.assertEqual(normalize_tag("Cafe\u0301"), "cafe\u0301")
++        self.assertNotEqual(normalize_tag("Cafe\u0301"), "café")
++
++    def test_preserves_punctuation_and_digits(self):
++        self.assertEqual(normalize_tag("a.b,c!d"), "a.b,c!d")
++        self.assertEqual(normalize_tag("Hello, World!"), "hello,-world!")
++        self.assertEqual(normalize_tag("v1.2_beta"), "v1.2_beta")
++
++    def test_strips_leading_and_trailing_hyphens(self):
++        self.assertEqual(normalize_tag("-a-"), "a")
++        self.assertEqual(normalize_tag("---a---b---"), "a---b")
++        self.assertEqual(normalize_tag("  --Hello--  "), "hello")
++
++    def test_hyphen_only_input_returns_empty_string(self):
++        self.assertEqual(normalize_tag("-"), "")
++        self.assertEqual(normalize_tag("----"), "")
++        self.assertEqual(normalize_tag("- -"), "")
++        self.assertEqual(normalize_tag("  -  "), "")
++
++    def test_internal_hyphens_are_kept(self):
++        self.assertEqual(normalize_tag("a - b"), "a---b")
++        self.assertEqual(normalize_tag("a-b c-d"), "a-b-c-d")
++
++    def test_unicode_whitespace_inside(self):
++        self.assertEqual(normalize_tag("a\u00a0b"), "a-b")
++        self.assertEqual(normalize_tag("a\u3000\u3000b"), "a-b")
++
++
++if __name__ == "__main__":
++    unittest.main()
+```
+## 3 改动文件列表
+tags.py, test_tags.py
+## 4 DeepSeek 测试结果
+
+
+命令（先后各执行一次）：
+```text
+python -B -m unittest discover -s . -p test_tags.py -v
+```
+
+**红灯（先写测试，`tags.py` 尚不存在）：**
+```text
+test_tags (unittest.loader._FailedTest.test_tags) ... ERROR
+...
+ImportError: Failed to import test module: test_tags
+...
+ModuleNotFoundError: No module named 'tags'
+
+Ran 1 test in 0.000s
+FAILED (errors=1)
+EXIT=1
+```
+
+**最终（实现后）：**
+```text
+test_collapses_consecutive_spaces ... ok
+test_does_not_normalize_unicode ... ok
+test_empty_input_raises ... ok
+test_hyphen_only_input_returns_empty_string ... ok
+test_internal_hyphens_are_kept ... ok
+test_lowercases_ascii ... ok
+test_mixed_whitespace_run_collapses_once ... ok
+test_newlines_collapse_to_single_hyphen ... ok
+test_preserves_punctuation_and_digits ... ok
+test_preserves_unicode_letters ... ok
+test_strips_leading_and_trailing_hyphens ... ok
+test_strips_surrounding_whitespace ... ok
+test_tabs_collapse_to_single_hyphen ... ok
+test_unicode_whitespace_inside ... ok
+test_whitespace_only_input_raises ... ok
+
+Ran 15 tests in 0.001s
+OK
+EXIT=0
+```
+
+

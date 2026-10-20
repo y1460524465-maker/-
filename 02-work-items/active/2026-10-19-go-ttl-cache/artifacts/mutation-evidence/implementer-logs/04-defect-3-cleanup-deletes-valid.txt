@@ -1,0 +1,14 @@
+# defect 3: cleanup deletes valid entries
+# cwd: E:\多agent协作\work\active\2026-10-19-go-ttl-cache\workspaces\implementation\.mutation-checks\defect-3-cleanup-deletes-valid
+# command: go test -run TestCleanupRemovesOnlyExpiredEntries|TestCleanupKeepsAllValidEntriesAndIsIdempotent|TestCleanupConcurrentWithSetGetDelete -count=1 ./...
+# output:
+--- FAIL: TestCleanupRemovesOnlyExpiredEntries (0.00s)
+    cleanup_test.go:137: internal entry count after Cleanup = 0, want 2
+--- FAIL: TestCleanupKeepsAllValidEntriesAndIsIdempotent (0.00s)
+    cleanup_test.go:195: valid entry count after Cleanup = 0, want 3
+--- FAIL: TestCleanupConcurrentWithSetGetDelete (0.00s)
+    cleanup_test.go:379: postcondition: Get(stable) = (<nil>, false), want (stable-value, true)
+FAIL
+FAIL	example.com/ttlcache	1.020s
+FAIL
+# exit code: 1

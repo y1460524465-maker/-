@@ -1,0 +1,20 @@
+=== RUN   TestZeroValueCache
+--- PASS: TestZeroValueCache (0.00s)
+=== RUN   TestMissingAndEmptyKey
+--- PASS: TestMissingAndEmptyKey (0.00s)
+=== RUN   TestNilValueIsAHit
+--- PASS: TestNilValueIsAHit (0.00s)
+=== RUN   TestSetOverwritesValueAndTTL
+--- PASS: TestSetOverwritesValueAndTTL (0.10s)
+=== RUN   TestNonPositiveTTLExpiresImmediately
+--- PASS: TestNonPositiveTTLExpiresImmediately (0.00s)
+=== RUN   TestExpiryHidesValue
+--- PASS: TestExpiryHidesValue (0.30s)
+=== RUN   TestIsExpiredBoundary
+--- PASS: TestIsExpiredBoundary (0.00s)
+=== RUN   TestConcurrentZeroValueInitialization
+--- PASS: TestConcurrentZeroValueInitialization (0.00s)
+=== RUN   TestConcurrentSetGetDelete
+--- PASS: TestConcurrentSetGetDelete (0.00s)
+PASS
+ok  	example.com/ttlcache	0.498s

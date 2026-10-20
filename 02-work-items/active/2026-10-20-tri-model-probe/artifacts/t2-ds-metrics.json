@@ -1,0 +1,21 @@
+{
+  "model": "DeepSeek 1017",
+  "task": "t2",
+  "round": 1,
+  "session_id": "session-90eeceb2-1f31-40ab-97ff-4eb1fe4a3606",
+  "input_chars": 936,
+  "visible_user_message_chars": 4580,
+  "output_chars": 2243,
+  "final_output_chars": 2007,
+  "actual_tokens": {
+    "inputTokens": 8193,
+    "outputTokens": 20416,
+    "cacheReadTokens": 270976,
+    "cacheWriteTokens": 0,
+    "totalTokens": 299585
+  },
+  "elapsed_s": 109.128,
+  "read_files": 3,
+  "test_result": "see saved events and result",
+  "character_scope": "explicit task / all assistant text; reasoning and tool arguments excluded"
+}

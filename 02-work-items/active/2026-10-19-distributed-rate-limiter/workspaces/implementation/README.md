@@ -1,0 +1,11 @@
+# implementation
+
+这是 `2026-10-19-distributed-rate-limiter` 的隔离操作工作区。
+
+- 目标：
+- 当前分支或版本：
+- 允许写入范围：
+- 验证命令：
+- 与其他工作区的关系：
+
+操作前读取事项的 `STATUS.md`、`handoff.md` 和 `brief.md`。不要把其他事项的文件复制进来。

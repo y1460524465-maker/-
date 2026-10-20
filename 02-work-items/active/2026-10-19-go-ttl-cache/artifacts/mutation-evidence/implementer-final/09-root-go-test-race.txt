@@ -1,0 +1,6 @@
+# root delivery race test
+# cwd: E:\多agent协作\work\active\2026-10-19-go-ttl-cache\workspaces\implementation
+# command: go test -race -count=1 ./...
+# output:
+ok  	example.com/ttlcache	1.193s
+# exit code: 0

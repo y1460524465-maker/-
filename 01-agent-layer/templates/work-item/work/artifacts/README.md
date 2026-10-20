@@ -1,0 +1,7 @@
+# Artifacts
+
+这里放可交付结果与验证证据，例如最终文档、报告、导出文件、测试证据和交付说明。
+
+DeepSeek 的请求、事件和返回结果放在 `artifacts/delegation/`。Codex 每轮独立审查放在事项根目录的 `reviews/<task-id>/round-N/`，不要堆在这里。
+
+每个交付物应能从 `STATUS.md` 或 `handoff.md` 定位，并注明生成日期、来源和验证状态。

@@ -1,0 +1,17 @@
+{
+  "item_id": "2026-10-19-go-ttl-cache",
+  "label": "task-3-tests",
+  "cwd": "E:\\多agent协作\\work\\active\\2026-10-19-go-ttl-cache\\workspaces\\implementation",
+  "permission_mode": "workspace-write",
+  "session_id": "session-cae5ed33-7387-4a1b-876c-e786456f2d55",
+  "status": "completed",
+  "exit_code": 0,
+  "error": null,
+  "git_head_before": "36c2d747334c1ff58ceb4e4017f8efc5ac6d313d",
+  "git_head_after": "36c2d747334c1ff58ceb4e4017f8efc5ac6d313d",
+  "git_head_changed": false,
+  "request_path": "E:\\多agent协作\\work\\active\\2026-10-19-go-ttl-cache\\artifacts\\delegation\\20261019-201557-105505-task-3-tests-request.md",
+  "events_path": "E:\\多agent协作\\work\\active\\2026-10-19-go-ttl-cache\\artifacts\\delegation\\20261019-201557-105505-task-3-tests-events.jsonl",
+  "result_path": "E:\\多agent协作\\work\\active\\2026-10-19-go-ttl-cache\\artifacts\\delegation\\20261019-201557-105505-task-3-tests-result.md",
+  "finished_at": "2026-10-19T20:22:17"
+}

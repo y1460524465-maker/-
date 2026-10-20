@@ -1,0 +1,21 @@
+# defect 1: missed expiry
+# cwd: E:\多agent协作\work\active\2026-10-19-go-ttl-cache\workspaces\implementation\.mutation-checks\defect-1-missed-expiry
+# command: go test -run TestIsExpiredBoundary|TestExpiryHidesValue|TestCleanupRemovesOnlyExpiredEntries|TestCleanupAllExpired|TestCleanupKeepsConcurrentlyUpdatedValue -count=1 ./...
+# output:
+--- FAIL: TestExpiryHidesValue (0.00s)
+    cache_test.go:170: Get(expired) = (stale, true), want (nil, false)
+--- FAIL: TestIsExpiredBoundary (0.07s)
+    --- FAIL: TestIsExpiredBoundary/exactly_at_expiresAt (0.07s)
+        cache_test.go:199: isExpired at 2026-10-19 20:24:08.0800056 +0800 CST m=+0.001052601 = false, want true
+    --- FAIL: TestIsExpiredBoundary/one_nanosecond_after (0.00s)
+        cache_test.go:199: isExpired at 2026-10-19 20:24:08.080005601 +0800 CST m=+0.001052602 = false, want true
+--- FAIL: TestCleanupRemovesOnlyExpiredEntries (0.00s)
+    cleanup_test.go:125: precondition: Get(expired-past) = (past, true), want (nil, false)
+--- FAIL: TestCleanupAllExpired (0.00s)
+    cleanup_test.go:170: internal entry count after cleaning all-expired cache = 5, want 0
+--- FAIL: TestCleanupKeepsConcurrentlyUpdatedValue (0.00s)
+    cleanup_test.go:271: setup: Get(shared-0) = (expired, true) after expiry, want miss
+FAIL
+FAIL	example.com/ttlcache	1.023s
+FAIL
+# exit code: 1

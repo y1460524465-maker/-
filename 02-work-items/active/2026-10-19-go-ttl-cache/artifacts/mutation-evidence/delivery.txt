@@ -1,0 +1,11 @@
+主控独立重跑
+case=
+delivery
+command=go test -run 
+.
+ -count=1 ./...
+expected_exit=
+0
+actual_exit=
+0
+ok  	example.com/ttlcache	0.115s

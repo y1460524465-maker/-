@@ -1,0 +1,6 @@
+# root package list
+# cwd: E:\多agent协作\work\active\2026-10-19-go-ttl-cache\workspaces\implementation
+# command: go list ./...
+# output:
+example.com/ttlcache
+# exit code: 0

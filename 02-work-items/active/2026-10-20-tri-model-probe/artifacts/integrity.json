@@ -1,0 +1,20 @@
+{
+  "baseline_files": 9799,
+  "changed_existing": [
+    "02-work-items\\WORK_INDEX.md"
+  ],
+  "missing_existing": [],
+  "unexpected_new": [],
+  "head_unchanged": true,
+  "frozen_hash_match": {
+    "t1": {
+      "source": true,
+      "snapshot": true
+    },
+    "t2": {
+      "source": true,
+      "snapshot": true
+    }
+  },
+  "existing_business_unchanged": true
+}

@@ -1,0 +1,20 @@
+# compile check defect-1-missed-expiry
+# cwd: E:\多agent协作\work\active\2026-10-19-go-ttl-cache\workspaces\implementation\.mutation-checks\defect-1-missed-expiry
+# command: go test -run ^$ -count=1 ./...
+# output:
+ok  	example.com/ttlcache	0.122s [no tests to run]
+# exit code: 0
+
+# compile check defect-2-nonpositive-keeps-old
+# cwd: E:\多agent协作\work\active\2026-10-19-go-ttl-cache\workspaces\implementation\.mutation-checks\defect-2-nonpositive-keeps-old
+# command: go test -run ^$ -count=1 ./...
+# output:
+ok  	example.com/ttlcache	0.113s [no tests to run]
+# exit code: 0
+
+# compile check defect-3-cleanup-deletes-valid
+# cwd: E:\多agent协作\work\active\2026-10-19-go-ttl-cache\workspaces\implementation\.mutation-checks\defect-3-cleanup-deletes-valid
+# command: go test -run ^$ -count=1 ./...
+# output:
+ok  	example.com/ttlcache	0.123s [no tests to run]
+# exit code: 0

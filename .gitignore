@@ -1,0 +1,21 @@
+# Local agent scratch space
+.superpowers/
+
+# Python
+__pycache__/
+*.py[cod]
+
+# Local secrets and temporary files
+.env
+.env.*
+!.env.example
+*.tmp
+
+# Operating system noise
+.DS_Store
+Thumbs.db
+**/.tools/
+**/gocache/
+**/*.zip
+**/.tools/
+**/gocache/

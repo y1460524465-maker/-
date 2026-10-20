@@ -1,0 +1,6 @@
+# baseline delivery
+# cwd: E:\多agent协作\work\active\2026-10-19-go-ttl-cache\workspaces\implementation\.mutation-checks\delivery
+# command: go test -count=1 ./...
+# output:
+ok  	example.com/ttlcache	0.995s
+# exit code: 0

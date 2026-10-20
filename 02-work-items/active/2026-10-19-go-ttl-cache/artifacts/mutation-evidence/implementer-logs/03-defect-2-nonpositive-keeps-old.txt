@@ -1,0 +1,12 @@
+# defect 2: ttl<=0 keeps old value
+# cwd: E:\多agent协作\work\active\2026-10-19-go-ttl-cache\workspaces\implementation\.mutation-checks\defect-2-nonpositive-keeps-old
+# command: go test -run TestNonPositiveTTLExpiresImmediately|TestCleanupDoesNotResurrectNonPositiveTTLEntries -count=1 ./...
+# output:
+--- FAIL: TestNonPositiveTTLExpiresImmediately (0.00s)
+    cache_test.go:124: Get(zero) after ttl=0 = (old, true), want (nil, false)
+--- FAIL: TestCleanupDoesNotResurrectNonPositiveTTLEntries (0.00s)
+    cleanup_test.go:224: ttl=0 immediate: internal entry "zero" still present, want physically deleted
+FAIL
+FAIL	example.com/ttlcache	0.120s
+FAIL
+# exit code: 1

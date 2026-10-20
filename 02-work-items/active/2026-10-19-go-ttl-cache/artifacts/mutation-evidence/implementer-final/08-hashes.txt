@@ -1,0 +1,16 @@
+# SHA256 comparison: root delivery vs .mutation-checks copies
+# root: E:\多agent协作\work\active\2026-10-19-go-ttl-cache\workspaces\implementation
+
+file             delivery defect1  defect2  defect3  root_sha256
+----------------------------------------------------------------
+cache.go         MATCH    DIFF     DIFF     MATCH    0E424EDA871CA339430495901B342EE2AA283100A226A8BE6CC7DCFF14101400
+cleanup.go       MATCH    MATCH    MATCH    DIFF     9979182DE871C3FEFA067358EA0AC1D45F22428A51A8A9114B46CAAB6DE60D7D
+cache_test.go    MATCH    MATCH    MATCH    MATCH    9C66B89DF0A70DD87EDA1D88353414E6492FBB7536F169BA729948C52DBE2B5D
+cleanup_test.go  MATCH    MATCH    MATCH    MATCH    DB25A7CF973019551D65D47872E2F8B1DADA532B9E24958DAC5CDF827EC40CF6
+go.mod           MATCH    MATCH    MATCH    MATCH    62096D7A33693CFD17038CEF77314ADAD7A300DFFB069EC83110EEFC76CEAB06
+
+# Expected differences only:
+# delivery: all MATCH
+# defect-1-missed-expiry: cache.go DIFF, all others MATCH
+# defect-2-nonpositive-keeps-old: cache.go DIFF, all others MATCH
+# defect-3-cleanup-deletes-valid: cleanup.go DIFF, all others MATCH

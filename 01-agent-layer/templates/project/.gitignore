@@ -1,0 +1,11 @@
+# Shared agent layer is an NTFS junction to the local rule source.
+01-agent-layer/
+
+__pycache__/
+*.py[cod]
+.env
+.env.*
+!.env.example
+*.tmp
+.DS_Store
+Thumbs.db
